@@ -22,7 +22,7 @@ std::unique_ptr<ExecutingContext> createJSContext(int32_t contextId, const JSExc
 
 static JSRuntime* runtime_{nullptr};
 
-ExecutionContextGCTracker::ExecutionContextGCTracker(JSContext* ctx): ScriptWrappable(ctx) {}
+ExecutionContextGCTracker::ExecutionContextGCTracker(JSContext* ctx) : ScriptWrappable(ctx) {}
 const WrapperTypeInfo& ExecutionContextGCTracker::wrapper_type_info_{"GCTracker"};
 
 void ExecutionContextGCTracker::Trace(GCVisitor* visitor) const {
@@ -30,7 +30,9 @@ void ExecutionContextGCTracker::Trace(GCVisitor* visitor) const {
   context->Trace(visitor);
 }
 void ExecutionContextGCTracker::Dispose() const {}
-const char * ExecutionContextGCTracker::GetHumanReadableName() const { return "GCTracker"; }
+const char* ExecutionContextGCTracker::GetHumanReadableName() const {
+  return "GCTracker";
+}
 
 ExecutingContext::ExecutingContext(int32_t contextId, const JSExceptionHandler& handler, void* owner)
     : context_id_(contextId), handler_(handler), owner_(owner), ctx_invalid_(false), unique_id_(context_unique_id++) {

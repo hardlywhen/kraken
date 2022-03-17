@@ -15,7 +15,7 @@ namespace kraken {
 class QJSFunction {
  public:
   static std::shared_ptr<QJSFunction> Create(JSContext* ctx, JSValue function) { return std::make_shared<QJSFunction>(ctx, function); }
-  explicit QJSFunction(JSContext* ctx, JSValue function) : function_(JS_DupValue(ctx, function)) {};
+  explicit QJSFunction(JSContext* ctx, JSValue function) : function_(JS_DupValue(ctx, function)){};
 
   bool IsFunction(JSContext* ctx);
 

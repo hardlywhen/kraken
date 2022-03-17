@@ -11,4 +11,4 @@ std::shared_ptr<BlobPropertyBag> BlobPropertyBag::Create(JSContext* ctx, JSValue
   return nullptr;
 }
 
-}
+}  // namespace kraken

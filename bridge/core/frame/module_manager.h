@@ -15,8 +15,8 @@ namespace kraken {
 class ModuleManager {
  public:
   static ScriptValue __kraken_invoke_module__(ExecutingContext* context,
-                                              std::unique_ptr<NativeString> &moduleName,
-                                              std::unique_ptr<NativeString> &method,
+                                              std::unique_ptr<NativeString>& moduleName,
+                                              std::unique_ptr<NativeString>& method,
                                               ScriptValue& params,
                                               std::shared_ptr<QJSFunction> callback,
                                               ExceptionState& exception);

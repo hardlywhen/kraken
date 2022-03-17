@@ -20,10 +20,7 @@ class Blob : public ScriptWrappable {
   DEFINE_WRAPPERTYPEINFO();
 
  public:
-  static Blob* Create(ExecutingContext* context,
-                      std::vector<std::shared_ptr<BlobPart>> data,
-                      std::shared_ptr<BlobPropertyBag> property,
-                      ExceptionState& exception_state);
+  static Blob* Create(ExecutingContext* context, std::vector<std::shared_ptr<BlobPart>> data, std::shared_ptr<BlobPropertyBag> property, ExceptionState& exception_state);
 
   Blob() = delete;
   explicit Blob(JSContext* ctx) : ScriptWrappable(ctx){};

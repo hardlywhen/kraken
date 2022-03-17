@@ -69,7 +69,7 @@ struct Converter<IDLAny> : public ConverterBase<IDLAny> {
 
   static JSValue ToValue(JSContext* ctx, const ScriptValue& value) { return value.ToQuickJS(); }
 };
-template<>
+template <>
 struct Converter<IDLOptional<IDLAny>> : public ConverterBase<IDLOptional<IDLAny>> {
   static ImplType FromValue(JSContext* ctx, JSValue value, ExceptionState& exception_state) {
     assert(!JS_IsException(value));
@@ -121,7 +121,7 @@ struct Converter<IDLDOMString> : public ConverterBase<IDLDOMString> {
   }
 
   static JSValue ToValue(JSContext* ctx, uint16_t* bytes, size_t length) { return JS_NewUnicodeString(ctx, bytes, length); }
-  static JSValue ToValue(JSContext* ctx, const std::string& str) { return JS_NewString(ctx, str.c_str());}
+  static JSValue ToValue(JSContext* ctx, const std::string& str) { return JS_NewString(ctx, str.c_str()); }
 };
 
 template <>
@@ -163,7 +163,7 @@ struct Converter<IDLSequence<T>> : public ConverterBase<IDLSequence<T>> {
   }
 };
 
-template<typename T>
+template <typename T>
 struct Converter<IDLOptional<IDLSequence<T>>> : public ConverterBase<IDLSequence<T>> {
   using ImplType = typename IDLSequence<typename Converter<T>::ImplType>::ImplType;
   static ImplType FromValue(JSContext* ctx, JSValue value, ExceptionState& exception_state) {
@@ -198,9 +198,9 @@ struct Converter<BlobPart> : public ConverterBase<BlobPart> {
   static JSValue ToValue(JSContext* ctx, BlobPart* data) { return data->ToQuickJS(ctx); }
 };
 
-template<>
+template <>
 struct Converter<BlobPropertyBag> : public ConverterBase<BlobPropertyBag> {
-  using ImplType  = BlobPropertyBag::ImplType;
+  using ImplType = BlobPropertyBag::ImplType;
   static ImplType FromValue(JSContext* ctx, JSValue value, ExceptionState& exception_state) {
     assert(!JS_IsException(value));
     return BlobPropertyBag::Create(ctx, value, exception_state);

@@ -18,6 +18,6 @@ class ScriptPromise final {
   KRAKEN_DISALLOW_NEW();
 };
 
-}
+}  // namespace kraken
 
 #endif  // KRAKENBRIDGE_BINDINGS_QJS_SCRIPT_PROMISE_H_

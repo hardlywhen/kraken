@@ -56,12 +56,11 @@ void handleInvokeModuleUnexpectedCallback(void* callbackContext, int32_t context
 }
 
 ScriptValue ModuleManager::__kraken_invoke_module__(ExecutingContext* context,
-                                                    std::unique_ptr<NativeString> &moduleName,
-                                                    std::unique_ptr<NativeString> &method,
+                                                    std::unique_ptr<NativeString>& moduleName,
+                                                    std::unique_ptr<NativeString>& method,
                                                     ScriptValue& paramsValue,
                                                     std::shared_ptr<QJSFunction> callback,
                                                     ExceptionState& exception) {
-
   std::unique_ptr<NativeString> params;
   if (!paramsValue.IsEmpty()) {
     params = paramsValue.ToJSONStringify(&exception).toNativeString();
@@ -77,32 +76,32 @@ ScriptValue ModuleManager::__kraken_invoke_module__(ExecutingContext* context,
 
   auto moduleCallback = ModuleCallback::Create(callback);
   context->ModuleCallbacks()->AddModuleCallbacks(moduleCallback);
-//
-//  ModuleContext* moduleContext = new ModuleContext{context, moduleCallback};
-//
-//  NativeString* result;
-//  if (callback != nullptr) {
-//    result = context->dartMethodPtr()->invokeModule(moduleContext, context->getContextId(), moduleName.get(), method.get(), params.get(), handleInvokeModuleTransientCallback);
-//  } else {
-//    result = context->dartMethodPtr()->invokeModule(moduleContext, context->getContextId(), moduleName.get(), method.get(), params.get(), handleInvokeModuleUnexpectedCallback);
-//  }
-//
-//  moduleName->free();
-//  method->free();
-//  if (params != nullptr) {
-//    params->free();
-//  }
-//
-//  if (result == nullptr) {
-//    return ScriptValue::Empty(context->ctx());
-//  }
-//
-//  ScriptValue resultString = ScriptValue::fromNativeString(context->ctx(), result);
-//
-//  // Manual free returned result string;
-//  result->free();
+  //
+  //  ModuleContext* moduleContext = new ModuleContext{context, moduleCallback};
+  //
+  //  NativeString* result;
+  //  if (callback != nullptr) {
+  //    result = context->dartMethodPtr()->invokeModule(moduleContext, context->getContextId(), moduleName.get(), method.get(), params.get(), handleInvokeModuleTransientCallback);
+  //  } else {
+  //    result = context->dartMethodPtr()->invokeModule(moduleContext, context->getContextId(), moduleName.get(), method.get(), params.get(), handleInvokeModuleUnexpectedCallback);
+  //  }
+  //
+  //  moduleName->free();
+  //  method->free();
+  //  if (params != nullptr) {
+  //    params->free();
+  //  }
+  //
+  //  if (result == nullptr) {
+  //    return ScriptValue::Empty(context->ctx());
+  //  }
+  //
+  //  ScriptValue resultString = ScriptValue::fromNativeString(context->ctx(), result);
+  //
+  //  // Manual free returned result string;
+  //  result->free();
 
-//  return resultString;
+  //  return resultString;
 }
 
 void ModuleManager::__kraken_add_module_listener__(ExecutingContext* context, std::shared_ptr<QJSFunction> handler, ExceptionState& exception) {

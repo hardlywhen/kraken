@@ -15,11 +15,10 @@ void ModuleCallbackCoordinator::RemoveModuleCallbacks(std::shared_ptr<ModuleCall
   listeners_.remove(callback);
 }
 
-ModuleCallbackCoordinator::ModuleCallbackCoordinator() {
-}
+ModuleCallbackCoordinator::ModuleCallbackCoordinator() {}
 
 void ModuleCallbackCoordinator::Trace(GCVisitor* visitor) {
-  for(auto& listener: listeners_) {
+  for (auto& listener : listeners_) {
     listener->Trace(visitor);
   }
 }
